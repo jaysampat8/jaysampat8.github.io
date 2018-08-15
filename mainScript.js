@@ -67,24 +67,6 @@ function getNews(value)
   
   var headlinesArr = data["Headlines"];
 
-
-  // var headline1 = headlinesArr[0]["Title"];
-  // var headline2 = headlinesArr[1]["Title"];
-  // var headline3 = headlinesArr[2]["Title"];
-
-  // var url1 = headlinesArr[0]["Url"];
-  // var url2 = headlinesArr[1]["Url"];
-  // var url3 = headlinesArr[2]["Url"];
-
-  // document.getElementById("headlines1").textContent = _.unescape(headline1);
-  // document.getElementById("headlines2").textContent = _.unescape(headline2);
-  // document.getElementById("headlines3").textContent = _.unescape(headline3);
-
-  // document.getElementById("url1").setAttribute("href", url1);
-  // document.getElementById("url2").setAttribute("href", url2);
-  // document.getElementById("url3").setAttribute("href", url3);
-
-
 for (i = 0; i < headlinesArr.length; i++) {
 
   var title = headlinesArr[i]["Title"];
@@ -121,10 +103,50 @@ for (i = 0; i < headlinesArr.length; i++) {
   document.getElementById("newsscroller").appendChild(cardElement);  
 }
   
-  document.getElementById("newsscroller").style.display = "block";
+  document.getElementById("info").style.display = "block";
   });
 
 }
 
 
+function getTweets(value)
+{
+  $.getJSON("https://api.stocktwits.com/api/2/streams/symbol/"+value+".json?access_token=b005fcf06b997b8ad2b627ee2c697fa545b65ece", function (data){
+  console.log(data);
 
+  var tweetMessagesArr = data["Messages"]; 
+
+  for (i = 0; i < tweetMessagesArr.length; i++) {
+
+    var tweetMsg = tweetMessagesArr[i]["body"];
+    var tweetTimestamp = tweetMessagesArr[i]["created_at"];
+    var username = tweetMessagesArr[i]["user"]["username"];
+    var avatar = tweetMessagesArr[i]["user"]["avatar_url"];
+
+    var tweetcardElement = document.createElement("div");
+    tweetcardElement.id = "tweetCard" + i;
+    tweetcardElement.className = "card";
+
+    var tweetcardBody = document.createElement("div");
+    tweetcardBody.className = "tweetcard-body";
+
+    var tweetcardUsername = document.createElement("h5");
+    tweetcardTitle.className = "card-username";
+    tweetcardTitleLink.text = _.unescape(username);
+
+    var tweetcardMsgText = document.createElement("div");
+    tweetcardMsgText.className = "card-text";
+    tweetcardMsgText.textContent = tweetMsg;
+
+    tweetcardBody.appendChild(tweetcardTitle);
+    tweetcardBody.appendChild(tweetcardMsgText);
+    tweetcardElement.appendChild(tweetcardBody);
+
+    document.getElementById("tweetscoller").appendChild(tweetcardElement);  
+
+  }
+
+  document.getElementById("tweets").style.display = "block";
+
+});
+}
