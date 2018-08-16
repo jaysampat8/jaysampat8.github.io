@@ -50,9 +50,19 @@ body{
     margin: 0 auto; 
 }
 
-#newsscroller {
+#info {
     display: none;
+}
+
+#newsscroller {
     overflow: scroll;
     max-height: 350px;
 }
 
+#tweetscoller {
+    overflow: scroll;
+    max-height: 350px;
+}
+border-bottom-light {
+    border-bottom: 15px solid rgba(187,187,187,.2);
+}

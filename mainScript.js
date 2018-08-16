@@ -6,6 +6,8 @@ function getTicker() {
   getVantageData(tickerValue)
   highValue(tickerValue)
   getNews(tickerValue)
+  getTweets(tickerValue)
+  getStockDetails(tickerValue)
 }
 
 function highValue(value){
@@ -74,6 +76,8 @@ for (i = 0; i < headlinesArr.length; i++) {
   var timeStamp = headlinesArr[i]["Time"] + " " + headlinesArr[i]["Date"];
   var source = headlinesArr[i]["Source"];
 
+  
+
   var cardElement = document.createElement("div");
   cardElement.id = "newsCard" + i;
   cardElement.className = "card";
@@ -102,7 +106,7 @@ for (i = 0; i < headlinesArr.length; i++) {
 
   document.getElementById("newsscroller").appendChild(cardElement);  
 }
-  
+  console.log("")
   document.getElementById("info").style.display = "block";
   });
 
@@ -114,7 +118,7 @@ function getTweets(value)
   $.getJSON("https://api.stocktwits.com/api/2/streams/symbol/"+value+".json?access_token=b005fcf06b997b8ad2b627ee2c697fa545b65ece", function (data){
   console.log(data);
 
-  var tweetMessagesArr = data["Messages"]; 
+  var tweetMessagesArr = data["messages"]; 
 
   for (i = 0; i < tweetMessagesArr.length; i++) {
 
@@ -122,6 +126,9 @@ function getTweets(value)
     var tweetTimestamp = tweetMessagesArr[i]["created_at"];
     var username = tweetMessagesArr[i]["user"]["username"];
     var avatar = tweetMessagesArr[i]["user"]["avatar_url"];
+
+    console.log(tweetMsg);
+    console.log(username);
 
     var tweetcardElement = document.createElement("div");
     tweetcardElement.id = "tweetCard" + i;
@@ -131,15 +138,25 @@ function getTweets(value)
     tweetcardBody.className = "tweetcard-body";
 
     var tweetcardUsername = document.createElement("h5");
-    tweetcardTitle.className = "card-username";
-    tweetcardTitleLink.text = _.unescape(username);
+    tweetcardUsername.className = "card-username";
+    tweetcardUsername.text = _.unescape(username);
 
     var tweetcardMsgText = document.createElement("div");
     tweetcardMsgText.className = "card-text";
-    tweetcardMsgText.textContent = tweetMsg;
+    tweetcardMsgText.textContent = _.unescape(tweetMsg);
+    
+    var tweetcardTimestamp = document.createElement("div");
+    tweetcardTimestamp.className = "card-text";
+    tweetcardTimestamp.textContent = tweetTimestamp;
 
-    tweetcardBody.appendChild(tweetcardTitle);
+    var tweetcardAvatar = document.createElement("img");
+    tweetcardAvatar.className = "card-text";
+    tweetcardAvatar.src = avatar;
+
+    tweetcardBody.appendChild(tweetcardAvatar);
+    tweetcardBody.appendChild(tweetcardUsername);
     tweetcardBody.appendChild(tweetcardMsgText);
+    tweetcardBody.appendChild(tweetcardTimestamp);
     tweetcardElement.appendChild(tweetcardBody);
 
     document.getElementById("tweetscoller").appendChild(tweetcardElement);  
@@ -149,4 +166,52 @@ function getTweets(value)
   document.getElementById("tweets").style.display = "block";
 
 });
+}
+
+function getStockDetails(value)
+{
+  $.getJSON("https://api.iextrading.com/1.0/stock/"+value+"/batch?types=quote,news,chart&range=1m&last=10", function (data){
+  
+  var stockDetails = data["quote"];
+  var exchange = stockDetails["primaryExchange"];
+  var sector = stockDetails["sector"];
+  var marketCap = stockDetails["marketCap"];
+  var peRatio = stockDetails["peRatio"];
+  var latestVolume = stockDetails["latestVolume"];
+  var week52Low = stockDetails["week52Low"];
+  var week52High = stockDetails["week52High"];
+  var extendedPrice = stockDetails["extendedPrice"];
+  var week52Low = stockDetails["week52Low"];
+
+  document.getElementById("sector").textContent = sector;
+  document.getElementById("exchange").textContent = exchange;
+  document.getElementById("marketCap").textContent = marketCap;
+
+
+
+
+
+});
+
+
+  $.getJSON("https://api.iextrading.com/1.0/stock/aapl/company", function (data){
+
+
+    document.getElementById("desc").textContent = "";
+
+
+    var companyName = data["companyName"];
+    var description = data["description"];
+    var CEO = data["CEO"];
+    var website = data["website"];
+
+
+    document.getElementById("desc").textContent = description;
+    document.getElementById("CEO").textContent = CEO;
+
+    
+  
+
+  });
+
 }
