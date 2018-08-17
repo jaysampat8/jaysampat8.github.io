@@ -1,18 +1,19 @@
 .tooltip {
-    position: absolute; 
-    display: inline-block;      
-    text-align: center;     
-    padding: 5px 10px;                      
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    padding: 5px 10px;
     line-height: 12px;
-    white-space: nowrap;                            
-    font: 12px sans-serif;      
-    background: #d3d3d3;    
-    border: 0px;            
-    pointer-events: none;       
+    white-space: nowrap;
+    font: 12px sans-serif;
+    background: #d3d3d3;
+    border: 0px;
+    pointer-events: none;
 }
-body{
-    margin : 0;
-    padding : 0;
+
+body {
+    margin: 0;
+    padding: 0;
     font-family: 'Arial', serif;
 }
 
@@ -21,48 +22,155 @@ body{
     height: 50px;
     margin: auto;
 }
-.nav{
+
+.nav {
     background-color: #595959;
     color: #ffffff;
     list-style: none;
     text-align: right;
     padding: 20px 0 20px 0;
 }
-.nav > li {
+
+.nav>li {
     display: inline-block;
-    padding-right: 50px;   
+    padding-right: 50px;
 }
-.nav > li > a {
+
+.nav>li>a {
     text-decoration: none;
     color: white;
 }
-.nav > li > a:hover{
+
+.nav>li>a:hover {
     color: #c1c1c1;
 }
 
-.container {
-    display: none;
+#container {
+    margin: auto;
+    width: 75%;
 }
 
 .stockPriceChart {
-    min-width: 310px; 
-    height: 400px; 
-    margin: 0 auto; 
-}
-
-#info {
-    display: none;
+    min-width: 310px;
+    height: 400px;
+    margin: 0 auto;
 }
 
 #newsscroller {
     overflow: scroll;
-    max-height: 350px;
+    float:left;
+    width: 60%;
+    height: 500px;
 }
 
-#tweetscoller {
+#tweetscroller {
+    float:right;
     overflow: scroll;
-    max-height: 350px;
+    margin-left: 60% + 8px;
+    height: 500px;
 }
+
 border-bottom-light {
-    border-bottom: 15px solid rgba(187,187,187,.2);
+    border-bottom: 15px solid rgba(187, 187, 187, .2);
+}
+
+.rowspacing td th
+{
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+.graphsize {
+    width: 75%
+}
+
+.graph-diagram {
+    width: 700;
+    height: 500;
+}
+
+
+.tweet-screen {
+    height: 500;
+    overflow-y: auto;
+
+}
+
+.profile {
+    text-align: left;
+}
+
+td, th {
+    border: 1px solid white;
+    text-align: left;
+    padding: 12px;
+}
+.graph-box {
+    border: 2px solid black
+}
+
+.main-class {
+    border: 15px solid white; 
+}
+
+th {
+    font-weight: normal;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+td {
+    font-weight: bold;
+    padding: 10px;  
+}
+
+.title-header {
+    font-weight:bold;
+    padding: 10px;
+    font-size: 25px;
+}
+
+
+#desc{
+    padding: 15px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+    color: gray;
+}
+
+a {
+    color: grey;
+}
+
+.tweet{
+    padding-top: 10px;
+    color: grey;
+}
+
+.username {
+    font-size:13px;
+}
+
+.timestamp {
+    font-size:13px;
+}
+
+.card {
+    margin-bottom: 5px;
+}
+
+.info-headers {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.carousel-caption {
+    top: 40px;
+    bottom: auto;
 }
