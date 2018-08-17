@@ -46,7 +46,7 @@ function getVantageData(value) {
 }
 
 function getNews(value) {
-    $.getJSON("https://globalnews.xignite.com/xGlobalNews.json/GetHistoricalReleasesBySecurity?IdentifierType=Symbol&Identifier=" + value + "&StartDate=7/15/2018&EndDate=8/14/2018&_token=901A03CEC0DE4056BB56D0505650C187", function (data) {
+    $.getJSON("https://globalnews.xignite.com/xGlobalNews.json/GetHistoricalReleasesBySecurity?IdentifierType=Symbol&Identifier=" + value + "&StartDate=7/15/2018&EndDate=8/14/2018&_token=65BA2ECBF34C41BAAA7410D45C87F6FE", function (data) {
         console.log(data);
 
         var headlinesArr = data["Headlines"];
